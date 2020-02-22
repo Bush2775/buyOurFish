@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import UserHome from '@/components/UserHOme'
+import UserHome from '@/components/UserHome'
 
 Vue.use(Router)
 
