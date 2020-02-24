@@ -8,7 +8,12 @@ const User = db.define(
       type: Sequelize.postgres.STRING,
       primaryKey: true
     },
-    username: { type: Sequelize.postgres.STRING }
+    username: { type: Sequelize.postgres.STRING },
+    password_has: { type: Sequelize.postgres.STRING },
+    salt: { type: Sequelize.postgres.STRING },
+    email: { type: Sequelize.postgres.STRING },
+    first_name: { type: Sequelize.postgres.STRING },
+    last_name: { type: Sequelize.postgres.STRING }
   },
   {
     freezeTableName: true,
