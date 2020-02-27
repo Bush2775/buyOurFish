@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 axios
-  .post("localhost:3000/login", {
+  .post("http://localhost:3000/login", {
     firstName: "test"
   })
   .then(console.log)
