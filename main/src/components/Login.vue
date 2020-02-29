@@ -1,38 +1,63 @@
+
 <template>
   <div class="content-container">
     <div class="modal">
-      <h1 class="title">{{title}}</h1>
-      <form @click="customHandler">
-        Username: <input type="text" v-model="userName" />
-      </form>
-      <form @click="customHandler">
-        Password: <input type="text" v-model="password" />
-      </form>
-      <form>
-      <button type="button" @click="customHandler">Login</button>
-      </form>
-      {{userName}}
+      <div>
+        Username:
+        <input type="text" v-model="request.userName" />
+      </div>
+      <div>
+        Password:
+        <input type="text" v-model="request.password" />
+      </div>
+      <div>
+        <button @click="handleClick" :disabled="buttonEnabled">Submit</button>
+      </div>
+      {{ request }}
     </div>
   </div>
 </template>
 
 <script>
+const axios = require("axios");
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "login",
+  data() {
     return {
-        title: 'Login',
-        userName: '',
-        password: '',
+      buttonEnabled: true,
+      request: {
+        userName: "",
+        password: ""
       }
-    
+    };
+  },
+  methods: {
+    handleClick: event => {
+      axios
+        .post("http://localhost:3000/login", {
+          firstName: "test"
+        })
+        .then(console.log)
+        .catch(err => {
+          console.error("ERRROR" + err);
+        });
+    }
+  },
+  watch: {
+    request: {
+      handler(val, val2) {
+        this.buttonEnabled = !(val.userName.trim() && val.password.trim());
+      },
+      deep: true
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
