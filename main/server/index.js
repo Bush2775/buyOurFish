@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
   console.log("hit");
+  userManagement.login(req.body);
   console.log(req.body);
   res.send("Hello World!");
 });
