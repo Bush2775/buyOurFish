@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../conn/buyOurFishDB");
 
 const animals = db.define(
-  "animals",
+  "ANIMALS",
   {
     build_animal_id: {
       type: Sequelize.postgres.STRING,
@@ -12,7 +12,8 @@ const animals = db.define(
     water_type: { type: Sequelize.postgres.STRING },
     aggression: { type: Sequelize.postgres.STRING },
     size: { type: Sequelize.postgres.STRING },
-    color: { type: Sequelize.postgres.STRING }
+    color: { type: Sequelize.postgres.STRING },
+    url: { type: Sequelize.postgres.STRING }
   },
   {
     freezeTableName: true,

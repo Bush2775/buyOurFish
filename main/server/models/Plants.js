@@ -11,7 +11,8 @@ const plants = db.define(
     name: { type: Sequelize.postgres.STRING },
     water_type: { type: Sequelize.postgres.STRING },
     difficulty: { type: Sequelize.postgres.STRING },
-    color: { type: Sequelize.postgres.STRING }
+    color: { type: Sequelize.postgres.STRING },
+    url: { type: Sequelize.postgres.STRING }
   },
   {
     freezeTableName: true,

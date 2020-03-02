@@ -1,6 +1,5 @@
 // make pull user and create hash for login user provided hash(password + user salt) === user passwordhash
 
-const { Sequelize } = require("sequelize");
 const AnimalTable = require("../models/Animals");
 // login
 async function login(loginParams) {
