@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../conn/buyOurFishDB");
 
 const plants = db.define(
-  "plants",
+  "PLANTS",
   {
     build_plant_id: {
       type: Sequelize.postgres.STRING,
@@ -19,4 +19,4 @@ const plants = db.define(
   }
 );
 
-module.exports = Build_animals;
+module.exports = plants;
