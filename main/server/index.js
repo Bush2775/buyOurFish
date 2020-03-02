@@ -21,8 +21,8 @@ app.get("/tanks", (req, res) => {
   console.log(req.query);
 });
 app.get("/animals", (req, res) => {
-  res.send[
-    ({
+  res.send([
+    {
       build_animal_id: 1,
       name: "Red Cobra Guppy",
       water_type: "Fresh",
@@ -121,8 +121,8 @@ app.get("/animals", (req, res) => {
       color: "Orange",
       url:
         "https://www.liveaquaria.com/product/prod_display.cfm?c=15+1500+5143+755&pcatid=755"
-    })
-  ]();
+    }
+  ]);
 });
 app.get("/plants", (req, res) => {
   res.send([
