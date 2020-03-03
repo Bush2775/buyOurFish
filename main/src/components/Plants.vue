@@ -1,5 +1,6 @@
 <template>
   <div class="content-container">
+    <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
       <table id="firstTable">

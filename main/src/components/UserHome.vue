@@ -1,5 +1,8 @@
 <template>
   <div class="content-container">
+    <div> 
+      <navbarcomp></navbarcomp>
+    </div> 
     <div class="modal">
       <h1 class="title">{{title}}</h1>
       
@@ -9,8 +12,11 @@
 </template>
 
 <script>
+import Navbar from '@/components/Navbar'
+
 export default {
   name: 'HelloWorld',
+
   data () {
     return {
         title: 'Your Saved Aquarium Builds'
