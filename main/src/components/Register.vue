@@ -5,25 +5,26 @@
       <h1 class="title">{{title}}</h1>
       <form @click="customHandler">
         First Name: <input type="text" v-model="firstName" />
-      </form>
+      </form><br />
       <form @click="customHandler">
         Last Name: <input type="text" v-model="lastName" />
-      </form>
+      </form><br />
       <form @click="customHandler">
         Username: <input type="text" v-model="userName" />
-      </form>
+      </form><br />
       <form @click="customHandler">
         Password: <input type="text" v-model="password" />
-      </form>
+      </form><br />
       <form @click="customHandler">
         Password Check: <input type="text" v-model="passwordCheck" />
-      </form>
+      </form><br />
       <form @click="customHandler">
         Email: <input type="text" v-model="email" />
-      </form>
+      </form><br />
       <form>
       <button type="button" @click="customHandler">Register</button>
       </form>
+      <br />
       <form>
       <button type="button" @click="customHandler">Back to login</button>
       </form>
@@ -34,7 +35,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Registration',
   
   data () {
     return {
@@ -66,5 +67,8 @@ li {
 }
 a {
   color: #42b983;
+}
+form {
+  text-align: center;
 }
 </style>
