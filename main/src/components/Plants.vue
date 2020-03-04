@@ -18,7 +18,7 @@
             <td>{{ plant.water_type }}</td>
             <td>{{ plant.difficulty }}</td>
             <td>{{ plant.color }}</td>
-            <td>{{ plant.url }}</td>
+            <td><img :src="plant.url" /></td>
             </tr>
         </tbody>
       </table>

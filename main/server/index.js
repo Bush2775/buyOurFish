@@ -11,15 +11,33 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
-  userManagement.login(req.body);
+  return userManagement.login(req.body).catch(err => {
+    return res.status(400).send({
+      message: "This is an error!"
+    });
+    // res.res.status(500).send({ error: err });
+    // res.render("failure");
+  });
 
   // Return auth token
-  res.send("Hello World!");
+  // res.send("Hello World!");
+});
+app.post("/register", (req, res) => {
+  return userManagement
+    .register(req.body)
+    .then(response => {
+      return res.send(response);
+    })
+    .catch(err => {
+      console.log("caught", err);
+      res.status(400).send(err);
+    });
 });
 
 app.get("/tanks", (req, res) => {
   console.log(req.query);
 });
+
 app.get("/animals", (req, res) => {
   res.send([
     {
