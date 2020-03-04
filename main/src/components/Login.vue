@@ -1,7 +1,9 @@
 
 <template>
   <div class="content-container">
+    <navbarcomp></navbarcomp>
     <div class="modal">
+      <h1>Login</h1>
       <div>
         Username:
         <input type="text" v-model="request.userName" />

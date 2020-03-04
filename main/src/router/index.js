@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import UserHome from '@/components/UserHome'
 import Plants from '@/components/Plants'
 import Animals from '@/components/Animals'
+import Navbar from '@/components/Navbar'
 
 Vue.use(Router)
 
@@ -34,7 +35,11 @@ export default new Router({
       path: '/Animals',
       name: 'Animals',
       component: Animals
+    },
+    {
+      path: '/Navbar',
+      name: 'Navbar',
+      component: Navbar
     }
-
   ]
 })
