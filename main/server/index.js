@@ -43,8 +43,7 @@ app.get("/tanks", (req, res) => {
       brand: 'SeaClear',
       model: 'X1010012500',
       dimensions: '36" x 15" x 20"',
-      volume: 50.0,
-      url: 
+      volume: 50.0
     },
     { 
       build_tank_id: 1,
