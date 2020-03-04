@@ -1,6 +1,8 @@
 
 <template>
+ 
   <div class="content-container">
+    <div v-if="loggedIn"> <!--This is if the user is logged in.-->
     <ul>
       <li>
         <nav>
@@ -8,10 +10,6 @@
         </nav>
       </li>
       <li>
-        <nav>
-          <router-link to="/Login">Login</router-link>
-        </nav>
-      </li><li>
         <nav>
           <router-link to="/Login">Logout</router-link>
         </nav>
@@ -30,15 +28,44 @@
       </li>
     </ul>
   </div>
+
+  <div v-else> <!--This is if the user NOT is logged in.-->
+    <ul>
+      <li>
+        <nav>
+          <router-link to="/UserHome">Buy Our Fish</router-link>
+        </nav>
+      </li>
+      <li>
+        <nav>
+          <router-link to="/Login">Login</router-link>
+        </nav>
+      </li>
+      <li>
+        <nav>
+          <router-link to="">Aquarium Builder</router-link>
+        </nav>
+      </li>
+      <li>
+        <nav>
+          <router-link to="/">Registration</router-link>
+        </nav>
+      </li>
+    </ul>
+  </div>
+
+  </div>
 </template>
 
 <script>
 const axios = require("axios");
 export default {
   name: "Navbar",
+  
   data() {
     return {
       buttonEnabled: true,
+      loggedIn: true, //Need to figure out a way to update this depending on if the User is logged in or not.
       request: {
         userName: "",
         password: ""
