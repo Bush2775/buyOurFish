@@ -10,7 +10,8 @@ axios
   .post("http://localhost:3000/createCollection", {
     description: "tsdlkfjs sdlkfj sldkjfs lkdjf",
     build_tank_id: 1,
-    name: "Thiss is my name"
+    name: "Thiss is my name",
+    water_type: "Fresh"
   })
   .then(data => console.log("sldkfj", data.data))
   .catch(err => {

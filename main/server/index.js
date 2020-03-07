@@ -149,6 +149,7 @@ app.get("/collection/:id", (req, res) => {
 });
 
 app.post("/createCollection", (req, res) => {
+  console.log('hit create')
   const user_id = 2;
   return collectionManagement
     .createBuild(req.body, user_id)
