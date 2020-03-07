@@ -23,8 +23,6 @@
 
 <script>
 const axios = require("axios");
-const { login } = require("../stores/appState");
-console.log(this.$authService);
 export default {
   name: "login",
   data() {
@@ -51,7 +49,7 @@ export default {
           //set cookie
           //store user in localStorage
           localStorage.setItem("User", JSON.stringify(data.data.user));
-          
+
           //TODO: get expiration from database
           //redirect
 
