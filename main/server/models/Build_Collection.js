@@ -24,7 +24,9 @@ const buildCollection = db.define(
 
 async function getUserBuilds(userID) {
   return await db.query(
-    `SELECT bbc.date, 
+    `SELECT 
+       bbc.build_collection_id,
+       bbc.date, 
        bbc.NAME, 
        bbc.description, 
        bbc.water_type, 
@@ -65,7 +67,5 @@ WHERE  user_id = :userID
     }
   );
 }
-
-async function getBuildDetails(build_id) {}
 
 module.exports = { buildCollection, getUserBuilds };

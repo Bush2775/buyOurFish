@@ -77,7 +77,7 @@ app.get("/collection/:id", (req, res) => {
 });
 
 app.post("/createCollection", (req, res) => {
-  console.log('hit create')
+  console.log("hit create");
   const user_id = 2;
   return collectionManagement
     .createBuild(req.body, user_id)
@@ -99,6 +99,21 @@ app.get("/animals", (req, res) => {
       res.status(400).send(err);
     });
 });
+
+app.post("/addAnimal", (req, res) => {
+  const user_id = 2;
+  return animalManagement
+    .addAnimalToBuild(req.body, user_id)
+    .then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).send(err);
+    });
+});
+
 app.get("/plants", (req, res) => {
   return plantManagement
     .getAllPlants()
