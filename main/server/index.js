@@ -123,20 +123,43 @@ app.get("/tanks", (req, res) => {
 
 app.get("/collections", (req, res) => {
   console.log("hit collection");
-  return collectionManagement.getBuildDetails(2).then(data => {
-    console.log(data);
-    res.send(data);
-  });
+  return collectionManagement
+    .getBuildDetails(2)
+    .then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
 });
 
 app.get("/collection/:id", (req, res) => {
   const id = req.params.id;
 
   console.log(id, "slkdfjslkjdf");
-  return collectionManagement.getBuild(id, 2).then(data => {
-    res.send(data);
-  });
+  return collectionManagement
+    .getBuild(id, 2)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
 });
+
+app.post("/createCollection", (req, res) => {
+  const user_id = 2;
+  return collectionManagement
+    .createBuild(req.body, user_id)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
+
 app.get("/animals", (req, res) => {
   res.send([
     {
