@@ -14,6 +14,10 @@
 <script>
 import Navbar from '@/components/Navbar'
 
+const isLoggedIn = localStorage.getItem('user')
+console.log(isLoggedIn)
+
+
 export default {
   name: 'HelloWorld',
 
