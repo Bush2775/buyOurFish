@@ -23,7 +23,6 @@
 
 <script>
 const axios = require("axios");
-
 export default {
   name: "login",
   data() {
@@ -47,6 +46,16 @@ export default {
         })
         .then(data => {
           this.response = JSON.stringify(data);
+          //set cookie
+          //store user in localStorage
+          localStorage.setItem("User", JSON.stringify(data.data.user));
+
+          //TODO: get expiration from database
+          //redirect
+
+
+          //store user information
+
         })
         .catch(err => {
           console.error("ERRROR" + err);

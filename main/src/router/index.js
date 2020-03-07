@@ -8,6 +8,7 @@ import Animals from '@/components/Animals'
 import Tanks from '@/components/Tanks'
 import Navbar from '@/components/Navbar'
 import BuildDetails from '@/components/BuildDetails'
+import createBuild from '@/components/createBuild'
 
 Vue.use(Router)
 
@@ -52,6 +53,10 @@ export default new Router({
       path: '/BuildDetails',
       name: 'BuildDetails',
       component: BuildDetails
+    },{
+      path: '/CreateBuild',
+      name: 'Create Build',
+      component: createBuild
     }
   ]
 })

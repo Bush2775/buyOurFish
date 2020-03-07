@@ -28,7 +28,6 @@ async function getBuild(build_id, user_id) {
   });
 
   const plants = await buildPlant.getPlantsFromBuild(build_id);
-
   const animals = await buildAnimal.getAnimalFromBuild(build_id);
 
   return {
@@ -39,11 +38,35 @@ async function getBuild(build_id, user_id) {
   };
 }
 
-async function getBuildDetails(user_id) {
+async function getBuilds(user_id) {
   return getUserBuilds(user_id);
 }
 
+async function createBuild(buildParams, user_id) {
+  const { name, description, water_type, build_tank_id } = buildParams;
+
+  const validTank = buildTank.findOne({
+    where: {
+      build_tank_id
+    }
+  });
+
+  if (!validTank) {
+    throw "Tank does not exist";
+  }
+
+  return buildCollection.create({
+    name,
+    description,
+    water_type,
+    build_tank_id,
+    date: new Date(),
+    user_id
+  });
+}
+
 module.exports = {
-  getBuildDetails,
+  getBuilds,
+  createBuild,
   getBuild
 };
