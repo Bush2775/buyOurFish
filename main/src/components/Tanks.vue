@@ -49,7 +49,7 @@ export default {
         .get("http://localhost:3000/tanks")
         .then(dataResponse => {
             this.tanksArray = dataResponse.data;
-            console.log(data)
+            
         })
         .catch(err => {
           console.error("ERRROR" + err);
@@ -109,6 +109,12 @@ table td:last-child {
 }
 table tbody tr:nth-child(2n) td {
   background: #D4D8F9;
+}
+.imageSize {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
 </style>

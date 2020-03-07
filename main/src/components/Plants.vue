@@ -45,7 +45,7 @@ export default {
         .get("http://localhost:3000/plants")
         .then(dataResponse => {
             this.plantArray = dataResponse.data;
-            console.log(data)
+            
         })
         .catch(err => {
           console.error("ERRROR" + err);
