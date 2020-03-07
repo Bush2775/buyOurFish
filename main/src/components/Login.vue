@@ -23,8 +23,6 @@
 
 <script>
 const axios = require("axios");
-const { login } = require("../stores/appState");
-console.log(this.$authService);
 export default {
   name: "login",
   data() {

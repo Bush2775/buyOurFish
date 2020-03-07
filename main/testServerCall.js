@@ -7,7 +7,11 @@ const tanks = require("./server/models/Build_Tanks");
 // tanks.findAll({ raw: true }).then(console.log);
 // console.log(uuid.v4());
 axios
-  .get("http://localhost:3000/collections")
+  .post("http://localhost:3000/createCollection", {
+    description: "tsdlkfjs sdlkfj sldkjfs lkdjf",
+    build_tank_id: 1,
+    name: "Thiss is my name"
+  })
   .then(data => console.log("sldkfj", data.data))
   .catch(err => {
     console.error("ERRROR" + JSON.stringify(err.response.data));

@@ -4,7 +4,11 @@ const db = require("../conn/buyOurFishDB"); //connection to database
 const buildCollection = db.define(
   "BUILD_COLLECTION", // table name
   {
-    build_collection_id: { type: Sequelize.postgres.INTEGER, primaryKey: true },
+    build_collection_id: {
+      type: Sequelize.postgres.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     date: { type: Sequelize.postgres.DATE },
     name: { type: Sequelize.postgres.STRING },
     description: { type: Sequelize.postgres.STRING },
@@ -61,5 +65,7 @@ WHERE  user_id = :userID
     }
   );
 }
+
+async function getBuildDetails(build_id) {}
 
 module.exports = { buildCollection, getUserBuilds };
