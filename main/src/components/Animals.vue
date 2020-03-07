@@ -22,8 +22,7 @@
             <td>{{ animal.aggression }}</td>
             <td>{{ animal.size}}</td>
             <td>{{ animal.color }}</td>
-            <td>{{ animal.url }}</td>
-            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
+            <td><img  class="imageSize" :src="animal.url" />}</td>
             </tr>
         </tbody>
       </table>
@@ -58,6 +57,7 @@ export default {
         .get("http://localhost:3000/animals")
         .then(dataResponse => {
             this.animalsArray = dataResponse.data;
+           
         })
         .catch(err => {
           console.error("ERRROR" + err);
@@ -117,6 +117,12 @@ table td:last-child {
 }
 table tbody tr:nth-child(2n) td {
   background: #D4D8F9;
+}
+.imageSize {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
 </style>
