@@ -3,26 +3,44 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
-      <table id="firstTable">
-        <thead>
-            <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>WaterType</th>
-            <th>Number of Plants</th>
-            <th>Number of Animals</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr @click= goToDetails() v-for="build in buildArray" :key="build.build_collection_id" id="info">
-            <td>{{ build.name }}</td>
-            <td>{{ build.description }}</td>
-            <td>{{ build.water_type }}</td>
-            <td>{{ build.plant_quantity }}</td>
-            <td>{{ build.animal_quantity }}</td>
-            </tr>
-        </tbody>
-      </table>
+      <div id="contentDetails">
+        <div>
+          <h3> Name:</h3>
+          
+        </div>
+         <br>
+
+         <div>
+          <h3> Description:</h3>
+          content
+        </div>
+         <br>
+
+         <div>
+          <h3> Watertype:</h3>
+          content
+        </div>
+         <br>
+
+         <div>
+          <h3> Tank Info:</h3>
+          content
+        </div>
+         <br>
+
+         <div>
+          <h3> Animal Info:</h3>
+          content
+        </div>
+         <br>
+
+         <div>
+          <h3> Plant Info:</h3>
+          content
+        </div>
+         <br>
+
+      </div>
     </div> 
   </div>
 </template>
@@ -33,9 +51,9 @@ export default {
   name: 'UserCollection',
   data () {
     return {
-        title: 'Your Current Builds',
+        title: 'Build Details',
         //authenticated: true,  //this is where we will check the session token.
-        buildArray: []
+        detailsArray: []
       }
     
   },
@@ -47,16 +65,14 @@ export default {
 },*/
 
   methods:{
-    goToDetails: event => {
-        window.location.href = "/#/BuildDetails";
-    }
+    
   },
   created() {
       //console.log("Created")
        axios
-        .get("http://localhost:3000/collections")
+        .get("http://localhost:3000/collections/1")//will be the call that steven sets up.
         .then(dataResponse => {
-            this.buildArray = dataResponse.data;
+            this.detailsArray = dataResponse.data;
             console.log(data)
         })
         .catch(err => {
@@ -118,6 +134,10 @@ table td:last-child {
 }
 table tbody tr:nth-child(2n) td {
   background: #D4D8F9;
+}
+#contentDetails {
+  text-align: left;
+   border: 3px solid #44475C;
 }
 
 </style>
