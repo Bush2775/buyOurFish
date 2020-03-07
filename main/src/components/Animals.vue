@@ -21,7 +21,7 @@
             <td>{{ animal.aggression }}</td>
             <td>{{ animal.size}}</td>
             <td>{{ animal.color }}</td>
-            <td>{{ animal.url }}</td>
+            <td><img  class="imageSize" :src="animal.url" />}</td>
             </tr>
         </tbody>
       </table>

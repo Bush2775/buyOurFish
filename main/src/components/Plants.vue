@@ -19,7 +19,7 @@
             <td>{{ plant.water_type }}</td>
             <td>{{ plant.difficulty }}</td>
             <td>{{ plant.color }}</td>
-            <td><img :src="plant.url" /></td>
+            <td><img  class="imageSize" :src="plant.url" /></td>
             </tr>
         </tbody>
       </table>
@@ -105,6 +105,12 @@ table td:last-child {
 }
 table tbody tr:nth-child(2n) td {
   background: #D4D8F9;
+}
+.imageSize {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
 </style>

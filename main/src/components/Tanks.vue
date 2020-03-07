@@ -23,7 +23,7 @@
             <td>{{ tanks.model }}</td>
             <td>{{ tanks.dimensions }}</td>
             <td>{{ tanks.volume }}</td>
-            <td>{{ tanks.url }}</td>
+            <td><img  class="imageSize" :src="tanks.url" /></td>
             </tr>
         </tbody>
       </table>

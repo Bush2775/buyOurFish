@@ -6,42 +6,116 @@
       <div id="contentDetails">
         <div>
           <h3> Name:</h3>
-          
+          {{ collection.name}}
         </div>
          <br>
 
          <div>
-          <h3> Description:</h3>
-          content
+          <h3> Build Description:</h3>
+           {{ collection.description}}
         </div>
          <br>
 
          <div>
-          <h3> Watertype:</h3>
-          content
+          <h3> Build Watertype:</h3>
+           {{ collection.water_type}}
         </div>
          <br>
 
          <div>
           <h3> Tank Info:</h3>
-          content
+          <table id="firstTable">
+              <thead>
+                  <tr>
+                  <th>Volume</th>
+                  <th>Brand</th>
+                  <th>Price</th>
+                  <th>Dimensions</th>
+                  <th>Material</th>
+                  <th>Model</th>
+                  <th>Picture</th>
+                  </tr>
+              </thead>
+              
+              <tbody>
+                  <tr >
+                  <td>{{ tank.volume }}</td>
+                  <td>{{ tank.brand }}</td>
+                  <td>{{ tank.price }}</td>
+                  <td>{{ tank.dimensions }}</td>
+                  <td>{{ tank.material }}</td>
+                  <td>{{ tank.model }}</td>
+                  <td><img class="imageSize" :src="tank.url" /></td>
+                  </tr>
+              </tbody>
+            </table>
         </div>
          <br>
 
          <div>
           <h3> Animal Info:</h3>
-          content
+          <table id="firstTable">
+              <thead>
+                  <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Water Type</th>
+                  <th>Size</th>
+                  <th>Color</th>
+                  <th>Argression</th>
+                  <th>Picture</th>
+                  </tr>
+              </thead>
+              
+              <tbody>
+                  <tr v-for="animals in animalArray" :key="'animal' + animals.build_animal_id" id="info">
+                  <td>{{ animals.name }}</td>
+                  <td>{{ animals.quantity }}</td>
+                  <td>{{ animals.water_type }}</td>
+                  <td>{{ animals.size}}</td>
+                  <td>{{ animals.color}}</td>
+                  <td>{{ animals.aggression }}</td>
+                  <td><img class="imageSize" :src="animals.url" /></td>
+                  </tr>
+              </tbody>
+            </table>
         </div>
          <br>
 
          <div>
           <h3> Plant Info:</h3>
-          content
+          <table id="firstTable">
+              <thead>
+                  <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Water Type</th>
+                  <th>Difficulty</th>
+                  <th>Color</th>
+                  <th>Picture</th>
+                  </tr>
+              </thead>
+              
+              <tbody>
+                  <tr v-for="plant in plantArray" :key="'plant' + plant.build_plant_id" id="info">
+                  <td>{{ plant.name }}</td>
+                  <td>{{ plant.quantity }}</td>
+                  <td>{{ plant.water_type }}</td>
+                  <td>{{ plant.difficulty}}</td>
+                  <td>{{ plant.color}}</td>
+                  <td><img  class="imageSize" :src="plant.url" /></td>
+
+                  </tr>
+              </tbody>
+            </table>
         </div>
          <br>
 
       </div>
     </div> 
+
+    {{ collection }}
+    
   </div>
 </template>
 
@@ -52,8 +126,10 @@ export default {
   data () {
     return {
         title: 'Build Details',
-        //authenticated: true,  //this is where we will check the session token.
-        detailsArray: []
+        plantArray: [],
+        animalArray: [],
+        collection: {},
+        tank: {}
       }
     
   },
@@ -70,10 +146,16 @@ export default {
   created() {
       //console.log("Created")
        axios
-        .get("http://localhost:3000/collections/1")//will be the call that steven sets up.
+        .get("http://localhost:3000/collection/1")//will be the call that steven sets up.
         .then(dataResponse => {
-            this.detailsArray = dataResponse.data;
-            console.log(data)
+          console.log(dataResponse.data, '***')
+          const { data } = dataResponse;
+          this.plantArray = data.plants;
+          this.animalArray = data.animals;
+          this.tank = data.tank;
+          this.collection = data.build;
+            
+
         })
         .catch(err => {
           console.error("ERRROR" + err);
@@ -138,6 +220,13 @@ table tbody tr:nth-child(2n) td {
 #contentDetails {
   text-align: left;
    border: 3px solid #44475C;
+}
+
+.imageSize {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
 </style>
