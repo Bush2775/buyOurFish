@@ -5,6 +5,8 @@ const db = require("../conn/buyOurFishDB");
 
 const userTable = require("../models/User");
 const sessionController = require("./sessionManagement");
+
+const formatLoginRegisterResponse = require("../helpers/formatLoginRegisterResponse");
 // login
 async function login(loginParams) {
   const { username, password } = loginParams;
@@ -28,7 +30,7 @@ async function login(loginParams) {
     .createNewSession(user.user_id)
     .catch(console.log);
 
-  return getUserResponse(session_id, user);
+  return formatLoginRegisterResponse(session_id, user);
 }
 
 async function register(registerParams) {
@@ -65,7 +67,7 @@ async function register(registerParams) {
     .createNewSession(newUser.user_id)
     .catch(console.log);
 
-  return getUserResponse(session_id, newUser);
+  return formatLoginRegisterResponse(session_id, newUser);
 }
 
 function getUserResponse(session_id, user) {

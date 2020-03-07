@@ -1,4 +1,3 @@
-
 <template>
   <div class="content-container">
     <navbarcomp></navbarcomp>
@@ -36,7 +35,8 @@ export default {
     };
   },
   methods: {
-    handleClick: event => {
+    handleClick(event) {
+      console.log(this.data);
       console.log("hitting request", this.request);
       axios
         .post("http://localhost:3000/login", {

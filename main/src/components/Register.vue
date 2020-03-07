@@ -2,59 +2,47 @@
   <div class="content-container">
     <navbarcomp></navbarcomp>
     <div class="modal">
-      <h1 class="title">{{title}}</h1>
-      <form @click="customHandler">
-        First Name: <input type="text" v-model="firstName" />
-      </form><br />
-      <form @click="customHandler">
-        Last Name: <input type="text" v-model="lastName" />
-      </form><br />
-      <form @click="customHandler">
-        Username: <input type="text" v-model="userName" />
-      </form><br />
-      <form @click="customHandler">
-        Password: <input type="text" v-model="password" />
-      </form><br />
-      <form @click="customHandler">
-        Password Check: <input type="text" v-model="passwordCheck" />
-      </form><br />
-      <form @click="customHandler">
-        Email: <input type="text" v-model="email" />
-      </form><br />
-      <form>
-      <button type="button" @click="customHandler">Register</button>
-      </form>
-      <br />
-      <form>
-      <button type="button" @click="customHandler">Back to login</button>
-      </form>
-      {{firstName}}
+      <h1 class="title">{{ title }}</h1>
+      <div>First Name: <input type="text" v-model="request.firstName" /></div>
+      <div>Last Name: <input type="text" v-model="request.lastName" /></div>
+      <div>Username: <input type="text" v-model="request.userName" /></div>
+      <div>Password: <input type="text" v-model="request.password" /></div>
+      <div>Password Check: <input type="text" v-model="passwordCheck" /></div>
+      <div>Email: <input type="text" v-model="request.email" /></div>
+      ,
+      <button type="button">Register</button>
+      <button type="button">Back to login</button>
+      {{ request }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Registration',
-  
-  data () {
+  name: "Registration",
+
+  data() {
     return {
-        title: 'Registration',
-        firstName: '',
-        lastName: '',
-        userName: '',
-        password: '',
-        passwordCheck: '',
-        email: ''
-      }
-    
+      title: "Registration",
+      passwordCheck: "",
+      request: {
+        firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        passwordCheck: "",
+        email: ""
+      },
+      response: ""
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

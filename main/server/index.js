@@ -11,14 +11,21 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
-  console.log(req);
-  return userManagement.login(req.body).catch(err => {
-    return res.status(400).send({
-      message: "This is an error!"
+  console.log(req.body);
+  return userManagement
+    .login(req.body)
+    .then(data => {
+      console.log("resposne", data);
+      res.send(data);
+    })
+    .catch(err => {
+      console.log(err, "sldkfj");
+      return res.status(400).send({
+        message: "This is an error!"
+      });
+      // res.res.status(500).send({ error: err });
+      // res.render("failure");
     });
-    // res.res.status(500).send({ error: err });
-    // res.render("failure");
-  });
 
   // Return auth token
   // res.send("Hello World!");
@@ -37,86 +44,87 @@ app.post("/register", (req, res) => {
 
 app.get("/tanks", (req, res) => {
   res.send([
-    { 
+    {
       build_tank_id: 8,
-      material: 'Acrylic',
-      price: '255.49',
-      brand: 'SeaClear',
-      model: 'X1010012500',
+      material: "Acrylic",
+      price: "255.49",
+      brand: "SeaClear",
+      model: "X1010012500",
       dimensions: '36" x 15" x 20"',
       volume: 50.0
     },
-    { 
+    {
       build_tank_id: 1,
-      material: 'Acrylic',
-      price: '159.99',
-      brand: 'SeaClear',
-      model: 'X1010012203',
-      dimensions: '24" x 13" x 16"' 
+      material: "Acrylic",
+      price: "159.99",
+      brand: "SeaClear",
+      model: "X1010012203",
+      dimensions: '24" x 13" x 16"'
     },
-    { 
+    {
       build_tank_id: 2,
-      material: 'SeaClear ',
-      price: '359.99',
-      brand: 'Aqueon',
-      model: 'X10-100-12403',
-      dimensions: '36" x 15" x 16"' 
+      material: "SeaClear ",
+      price: "359.99",
+      brand: "Aqueon",
+      model: "X10-100-12403",
+      dimensions: '36" x 15" x 16"'
     },
-    { 
+    {
       build_tank_id: 3,
-      material: 'Glass',
-      price: '139.99',
-      brand: 'Aqueon',
-      model: '170976',
-      dimensions: '48.75" x 21.25." x 14"' 
+      material: "Glass",
+      price: "139.99",
+      brand: "Aqueon",
+      model: "170976",
+      dimensions: '48.75" x 21.25." x 14"'
     },
-    { 
+    {
       build_tank_id: 9,
-      material: 'Glass',
-      price: '13.99',
-      brand: 'Aqueon',
-      model: '170909',
-      dimensions: '16.5" x 10.75" x 8.75"' 
+      material: "Glass",
+      price: "13.99",
+      brand: "Aqueon",
+      model: "170909",
+      dimensions: '16.5" x 10.75" x 8.75"'
     },
-    { 
+    {
       build_tank_id: 10,
-      material: 'Glass',
-      price: '12.99',
-      brand: 'Aqueon',
-      model: '170895',
-      dimensions: '12.25" x 8.25" x 6.25"' 
+      material: "Glass",
+      price: "12.99",
+      brand: "Aqueon",
+      model: "170895",
+      dimensions: '12.25" x 8.25" x 6.25"'
     },
-    { 
+    {
       build_tank_id: 4,
-      material: 'Glass',
-      price: '14.99',
-      brand: 'Aqueon',
-      model: '170917',
-      dimensions: '20.25" x 10.5" x 12.6"' 
+      material: "Glass",
+      price: "14.99",
+      brand: "Aqueon",
+      model: "170917",
+      dimensions: '20.25" x 10.5" x 12.6"'
     },
-    { 
+    {
       build_tank_id: 5,
-      material: 'Plastic',
-      price: '56.99',
-      brand: 'Tetra',
-      model: '5271134',
-      dimensions: '24" x 12" x 16"' 
+      material: "Plastic",
+      price: "56.99",
+      brand: "Tetra",
+      model: "5271134",
+      dimensions: '24" x 12" x 16"'
     },
-    { 
+    {
       build_tank_id: 6,
-      material: 'Glass',
-      price: '59.99',
-      brand: 'Aqueon',
-      model: '170941',
-      dimensions: '30.625" x 12.625" x 16.75"' 
+      material: "Glass",
+      price: "59.99",
+      brand: "Aqueon",
+      model: "170941",
+      dimensions: '30.625" x 12.625" x 16.75"'
     },
-    { 
+    {
       build_tank_id: 7,
-      material: 'Glass',
-      price: '99.99',
-      brand: 'Aqueon',
-      model: '170968',
-      dimensions: '36.5" x 17.125" x 19.25"' }
+      material: "Glass",
+      price: "99.99",
+      brand: "Aqueon",
+      model: "170968",
+      dimensions: '36.5" x 17.125" x 19.25"'
+    }
   ]);
 });
 
