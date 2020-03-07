@@ -49,7 +49,7 @@ export default {
           //set cookie
           //store user in localStorage
           localStorage.setItem("User", JSON.stringify(data.data.user));
-          
+
           //TODO: get expiration from database
           //redirect
 
