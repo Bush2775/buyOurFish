@@ -38,7 +38,7 @@ async function getBuild(build_id, user_id) {
   };
 }
 
-async function getBuildDetails(user_id) {
+async function getBuilds(user_id) {
   return getUserBuilds(user_id);
 }
 
@@ -66,7 +66,7 @@ async function createBuild(buildParams, user_id) {
 }
 
 module.exports = {
-  getBuildDetails,
+  getBuilds,
   createBuild,
   getBuild
 };
