@@ -22,7 +22,8 @@
             <td>{{ animal.aggression }}</td>
             <td>{{ animal.size}}</td>
             <td>{{ animal.color }}</td>
-            <td><img  class="imageSize" :src="animal.url" />}</td>
+            <td><img  class="imageSize" :src="animal.url" /></td>
+            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
             </tr>
         </tbody>
       </table>

@@ -20,9 +20,8 @@
             <td>{{ plant.water_type }}</td>
             <td>{{ plant.difficulty }}</td>
             <td>{{ plant.color }}</td>
-            <td><img :src="plant.url" /></td>
-            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
             <td><img  class="imageSize" :src="plant.url" /></td>
+            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
             </tr>
         </tbody>
       </table>
