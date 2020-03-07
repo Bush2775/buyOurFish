@@ -7,8 +7,7 @@ const userTable = require("../models/User");
 const sessionController = require("./sessionManagement");
 // login
 async function login(loginParams) {
-  const username = loginParams.username;
-  const password = loginParams.password;
+  const { username, password } = loginParams;
   const user = await userTable
     .findOne({
       where: {

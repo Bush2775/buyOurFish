@@ -4,13 +4,14 @@ const port = 3000;
 const bodyParser = require("body-parser");
 const sessionManagement = require("./controllers/sessionManagement");
 const userManagement = require("./controllers/userManagement");
-
+const { getUserBuilds } = require("./models/Build_Collection");
 const cors = require("cors");
 app.use(cors());
 
 app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
+  console.log(req);
   return userManagement.login(req.body).catch(err => {
     return res.status(400).send({
       message: "This is an error!"
@@ -38,6 +39,13 @@ app.get("/tanks", (req, res) => {
   console.log(req.query);
 });
 
+app.get("/collections", (req, res) => {
+  console.log("hit collection");
+  getUserBuilds(2).then(data => {
+    console.log(data);
+    return res.send(data);
+  });
+});
 app.get("/animals", (req, res) => {
   res.send([
     {

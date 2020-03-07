@@ -6,16 +6,17 @@
       <h1>Login</h1>
       <div>
         Username:
-        <input type="text" v-model="request.userName" />
+        <input type="text" v-model="request.username" />
       </div>
       <div>
         Password:
         <input type="text" v-model="request.password" />
       </div>
       <div>
-        <button @click="handleClick" :disabled="buttonEnabled">Submit</button>
+        <button @click="handleClick">Submit</button>
       </div>
       {{ request }}
+      {{ response }}
     </div>
   </div>
 </template>
@@ -28,18 +29,23 @@ export default {
     return {
       buttonEnabled: true,
       request: {
-        userName: "",
+        username: "",
         password: ""
-      }
+      },
+      response: ""
     };
   },
   methods: {
     handleClick: event => {
+      console.log("hitting request", this.request);
       axios
         .post("http://localhost:3000/login", {
-          firstName: "test"
+          username: this.request.username,
+          password: this.request.password
         })
-        .then(console.log)
+        .then(data => {
+          this.response = JSON.stringify(data);
+        })
         .catch(err => {
           console.error("ERRROR" + err);
         });
@@ -48,7 +54,7 @@ export default {
   watch: {
     request: {
       handler(val, val2) {
-        this.buttonEnabled = !(val.userName.trim() && val.password.trim());
+        this.buttonEnabled = !(val.username.trim() && val.password.trim());
       },
       deep: true
     }
