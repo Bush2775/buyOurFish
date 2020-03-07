@@ -2,58 +2,69 @@
 <template>
  
   <div class="content-container">
+    <div>
+      <h1 id=title> &lt;')))>&lt; &ensp; Buy Our Fish &ensp; >&lt;((('></h1>
+    </div>
     <div v-if="loggedIn"> <!--This is if the user is logged in.-->
     <ul>
       <li>
         <nav>
-          <router-link to="/UserHome">Buy Our Fish</router-link>
+          <router-link class="right" to="/Login">Logout</router-link>
+        </nav>
+      </li><li>
+        <nav>
+          <router-link class="left" to="">Aquarium Builder</router-link>
+        </nav>
+      </li><li>
+        <nav>
+          <router-link class="left" to="/UserHome">My Builds</router-link>
         </nav>
       </li>
       <li>
         <nav>
-          <router-link to="/Login">Logout</router-link>
+          <router-link class="left" to="/Animals">Fish</router-link>
         </nav>
-      </li><li>
+      </li>
+      <li>
         <nav>
-          <router-link to="">Aquarium Builder</router-link>
+          <router-link class="left" to="/Plants">Plants</router-link>
         </nav>
-      </li><li>
+        <li>
         <nav>
-          <router-link to="/UserHome">My Builds</router-link>
-        </nav>
-      </li><li>
-        <nav>
-          <router-link to="/">Registration</router-link>
+          <router-link class="left" to="/Tanks">Aquariums</router-link>
         </nav>
       </li>
     </ul>
   </div>
 
-  <div v-else> <!--This is if the user NOT is logged in.-->
+  <div v-else> <!--This is if the user is logged out.-->
     <ul>
       <li>
         <nav>
-          <router-link to="/UserHome">Buy Our Fish</router-link>
+          <router-link class="right" to="/Login">Login</router-link>
         </nav>
       </li>
       <li>
         <nav>
-          <router-link to="/Login">Login</router-link>
+          <router-link class="right" to="/">Registration</router-link>
         </nav>
       </li>
       <li>
         <nav>
-          <router-link to="">Aquarium Builder</router-link>
+          <router-link class="left" to="/Animals">Fish</router-link>
         </nav>
       </li>
       <li>
         <nav>
-          <router-link to="/">Registration</router-link>
+          <router-link class="left" to="/Plants">Plants</router-link>
+        </nav>
+        <li>
+        <nav>
+          <router-link class="left" to="/Tanks">Aquariums</router-link>
         </nav>
       </li>
     </ul>
   </div>
-
   </div>
 </template>
 
@@ -65,7 +76,7 @@ export default {
   data() {
     return {
       buttonEnabled: true,
-      loggedIn: true, //Need to figure out a way to update this depending on if the User is logged in or not.
+      loggedIn: false, //Need to figure out a way to update this depending on if the User is logged in or not.
       request: {
         userName: "",
         password: ""
@@ -105,9 +116,6 @@ ul {
   background-color: #44475C;
 }
 
-li {
-  float: left;
-}
 
 li a {
   display: block;
@@ -116,6 +124,14 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
+
+.right {
+  float: right
+}
+.left {
+  float: left
+}
+
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {

@@ -19,10 +19,17 @@ export default {
 
   data () {
     return {
-        title: 'Your Saved Aquarium Builds'
+        title: 'Your Saved Aquarium Builds',
+        //authenticated: false,  this is where we will check the session token.
       }
     
-  }
+  },
+  /*mounted() { // will redirected users to different page if they are not authenticated.
+        if(!this.authenticated) { // this can be if the user has session instead of authenticated.
+            this.$router.replace({ name: "Login" });
+            alert('You need to log in before you can view your personal Builds')
+        }
+}*/
 }
 </script>
 
