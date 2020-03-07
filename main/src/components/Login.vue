@@ -1,4 +1,3 @@
-
 <template>
   <div class="content-container">
     <navbarcomp></navbarcomp>
@@ -16,6 +15,7 @@
         <button @click="handleClick">Submit</button>
       </div>
       {{ request }}
+      <!-- {{ JSON.stringify(this.data.$sharedData) }} -->
       {{ response }}
     </div>
   </div>
@@ -23,6 +23,8 @@
 
 <script>
 const axios = require("axios");
+const { login } = require("../stores/appState");
+console.log(this.$authService);
 export default {
   name: "login",
   data() {
@@ -36,7 +38,8 @@ export default {
     };
   },
   methods: {
-    handleClick: event => {
+    handleClick(event) {
+      console.log(this.data);
       console.log("hitting request", this.request);
       axios
         .post("http://localhost:3000/login", {
