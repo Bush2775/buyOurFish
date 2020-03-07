@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
-const sessionManagement = require("./controllers/sessionManagement");
 const userManagement = require("./controllers/userManagement");
+const collectionManagement = require("./controllers/collectionManagment");
 const { getUserBuilds } = require("./models/Build_Collection");
 const cors = require("cors");
 app.use(cors());
@@ -11,25 +11,18 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/login", (req, res) => {
-  console.log(req.body);
   return userManagement
     .login(req.body)
     .then(data => {
-      console.log("resposne", data);
       res.send(data);
     })
     .catch(err => {
-      console.log(err, "sldkfj");
       return res.status(400).send({
-        message: "This is an error!"
+        message: "FAIL TO AUTHORIZE"
       });
-      // res.res.status(500).send({ error: err });
-      // res.render("failure");
     });
-
-  // Return auth token
-  // res.send("Hello World!");
 });
+
 app.post("/register", (req, res) => {
   return userManagement
     .register(req.body)
@@ -130,9 +123,18 @@ app.get("/tanks", (req, res) => {
 
 app.get("/collections", (req, res) => {
   console.log("hit collection");
-  getUserBuilds(2).then(data => {
+  return collectionManagement.getBuildDetails(2).then(data => {
     console.log(data);
-    return res.send(data);
+    res.send(data);
+  });
+});
+
+app.get("/collection/:id", (req, res) => {
+  const id = req.params.id;
+
+  console.log(id, "slkdfjslkjdf");
+  return collectionManagement.getBuild(id, 2).then(data => {
+    res.send(data);
   });
 });
 app.get("/animals", (req, res) => {
