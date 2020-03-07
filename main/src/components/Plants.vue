@@ -11,6 +11,7 @@
             <th>Difficulty</th>
             <th>Color</th>
             <th>Picture</th>
+            <th v-if="loggedIn"> Add </th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,8 @@
             <td>{{ plant.water_type }}</td>
             <td>{{ plant.difficulty }}</td>
             <td>{{ plant.color }}</td>
-            <td><img :src="plant.url" /></td>
+            <td><img  class="imageSize" :src="plant.url" /></td>
+            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
             </tr>
         </tbody>
       </table>
@@ -35,9 +37,18 @@ export default {
   data () {
     return {
         title: 'Plants Available to Add',
-        plantArray: []
+        plantArray: [],
+        loggedIn: true,
+        request: {
+          quantity: 0
+        }
       }
     
+  },
+  methods: {
+    addToBuild(event) {
+      
+    }
   },
   created() {
       //console.log("Created")
@@ -45,7 +56,7 @@ export default {
         .get("http://localhost:3000/plants")
         .then(dataResponse => {
             this.plantArray = dataResponse.data;
-            console.log(data)
+            
         })
         .catch(err => {
           console.error("ERRROR" + err);
@@ -105,6 +116,12 @@ table td:last-child {
 }
 table tbody tr:nth-child(2n) td {
   background: #D4D8F9;
+}
+.imageSize {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
 }
 
 </style>

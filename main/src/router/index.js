@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import UserHome from '@/components/UserHome'
+import UserCollection from '@/components/UserCollection'
 import Plants from '@/components/Plants'
 import Animals from '@/components/Animals'
 import Tanks from '@/components/Tanks'
 import Navbar from '@/components/Navbar'
+import BuildDetails from '@/components/BuildDetails'
 import createBuild from '@/components/createBuild'
 
 Vue.use(Router)
@@ -24,9 +25,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/UserHome',
-      name: 'UserHome',
-      component: UserHome
+      path: '/UserCollection',
+      name: 'UserCollection',
+      component: UserCollection
     },
     {
       path: '/Plants',
@@ -49,6 +50,10 @@ export default new Router({
       component: Tanks
     },
     {
+      path: '/BuildDetails',
+      name: 'BuildDetails',
+      component: BuildDetails
+    },{
       path: '/CreateBuild',
       name: 'Create Build',
       component: createBuild
