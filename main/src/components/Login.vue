@@ -15,6 +15,7 @@
         <button @click="handleClick">Submit</button>
       </div>
       {{ request }}
+      <!-- {{ JSON.stringify(this.data.$sharedData) }} -->
       {{ response }}
     </div>
   </div>
@@ -22,6 +23,8 @@
 
 <script>
 const axios = require("axios");
+const { login } = require("../stores/appState");
+console.log(this.$authService);
 export default {
   name: "login",
   data() {
