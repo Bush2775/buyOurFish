@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr @click= goToDetails() v-for="build in buildArray" :key="build.build_collection_id" id="info">
+            <tr @click= goToDetails(build) v-for="build in buildArray" :key="build.build_collection_id" id="info">
             <td>{{ build.name }}</td>
             <td>{{ build.description }}</td>
             <td>{{ build.water_type }}</td>
@@ -35,7 +35,8 @@ export default {
     return {
         title: 'Your Current Builds',
         //authenticated: true,  //this is where we will check the session token.
-        buildArray: []
+        buildArray: [],
+        collectionsList: []
       }
     
   },
@@ -47,7 +48,8 @@ export default {
 },*/
 
   methods:{
-    goToDetails: event => {
+    goToDetails: build => {
+        console.log(build)
         window.location.href = "/#/BuildDetails";
     }
   },
@@ -57,8 +59,9 @@ export default {
         .get("http://localhost:3000/collections")
         .then(dataResponse => {
             this.buildArray = dataResponse.data;
-            console.log(data)
+            localStorage.setItem("data", JSON.stringify(dataResponse))
         })
+        
         .catch(err => {
           console.error("ERRROR" + err);
         });
