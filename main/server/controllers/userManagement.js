@@ -70,15 +70,6 @@ async function register(registerParams) {
   return formatLoginRegisterResponse(session_id, newUser);
 }
 
-function getUserResponse(session_id, user) {
-  delete user.password_hash;
-  delete user.salt;
-  return {
-    auth: session_id,
-    user
-  };
-}
-
 function getPasswordHash(password, salt) {
   const hash = sha256.create();
   const inputPassword = hash.update(password + salt);

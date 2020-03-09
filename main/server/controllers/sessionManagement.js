@@ -6,6 +6,7 @@ const addMinutesToDate = require("../helpers/addMinutestToDate");
 // Get new token -- make sure old token is used in past 5 min
 async function getUserBySession(authToken) {
   return Session.findOne({
+    raw: true,
     where: {
       session_id: authToken,
       expiration: {
