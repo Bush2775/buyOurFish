@@ -132,6 +132,18 @@ export default {
   name: "UserCollection",
   data() {
     return {
+        title: 'Build Details',
+        build: JSON.parse(localStorage.getItem("selectedBuild")),
+        authenticated: true,
+        plantArray: [],
+        animalArray: [],
+        collection: {},
+        tank: {},
+      }
+    
+  },
+   mounted() { // will redirected users to different page if they are not authenticated.
+        /*if(!this.authenticated) { // this can be if the user has session instead of authenticated.
       title: "Build Details",
       plantArray: [],
       animalArray: [],
@@ -143,14 +155,14 @@ export default {
         if(!this.authenticated) { // this can be if the user has session instead of authenticated.
             this.$router.replace({ name: "Login" });
             alert('You need to log in before you can view your personal Builds')
-        }
-},*/
+        }*/
+},
 
   methods: {},
   created() {
     //console.log("Created")
     axios
-      .get("http://localhost:3000/collection/1", {
+      .get("http://localhost:3000/collection/" + this.build.build_collection_id, {
         headers: {
           Authorization: localStorage.getItem("Auth")
         }

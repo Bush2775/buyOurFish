@@ -3,6 +3,7 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
+      <div>selected build {{build}} </div>
       <table id="firstTable">
         <thead>
           <tr>
@@ -39,11 +40,13 @@ export default {
   name: "UserCollection",
   data() {
     return {
-      title: "Your Current Builds",
-      //authenticated: true,  //this is where we will check the session token.
-      buildArray: [],
-      collectionsList: []
-    };
+        title: 'Your Current Builds',
+        build: JSON.parse(localStorage.getItem("selectedBuild")),
+        //authenticated: true,  //this is where we will check the session token.
+        buildArray: [],
+        collectionsList: []
+      }
+    
   },
   /*mounted() { // will redirected users to different page if they are not authenticated.
         if(!this.authenticated) { // this can be if the user has session instead of authenticated.
@@ -55,7 +58,8 @@ export default {
   methods: {
     goToDetails: build => {
       console.log(build);
-      window.location.href = "/#/BuildDetails";
+      localStorage.setItem("selectedBuild", JSON.stringify(build))
+        window.location.href = "/#/BuildDetails";
     }
   },
   created() {

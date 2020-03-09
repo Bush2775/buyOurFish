@@ -14,12 +14,12 @@
         </li>
         <li>
           <nav>
-            <router-link class="left" to>Aquarium Builder</router-link>
+            <router-link class="left" to="/CreateBuild">Aquarium Builder</router-link>
           </nav>
         </li>
         <li>
           <nav>
-            <router-link class="left" to="/UserHome">My Builds</router-link>
+            <router-link class="left" to="/UserCollection">My Builds</router-link>
           </nav>
         </li>
         <li>
