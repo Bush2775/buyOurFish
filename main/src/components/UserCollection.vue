@@ -35,6 +35,7 @@ export default {
   data () {
     return {
         title: 'Your Current Builds',
+        build: JSON.parse(localStorage.getItem("selectedBuild")),
         //authenticated: true,  //this is where we will check the session token.
         buildArray: [],
         collectionsList: []
@@ -50,7 +51,6 @@ export default {
 
   methods:{
     goToDetails: build => {
-        console.log(build)
         localStorage.setItem("selectedBuild", JSON.stringify(build))
         window.location.href = "/#/BuildDetails";
         
