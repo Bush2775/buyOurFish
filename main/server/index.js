@@ -115,8 +115,8 @@ app.post("/addAnimal", authUser, (req, res) => {
     });
 });
 
-app.post("/addPlant", (req, res) => {
-  const user_id = 2;
+app.post("/addPlant", authUser, (req, res) => {
+  const user_id = req.user_id;
   return plantManagement
     .addPlantToBuild(req.body, user_id)
     .then(data => {
