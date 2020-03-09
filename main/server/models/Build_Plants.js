@@ -2,7 +2,7 @@ const { Sequelize, QueryTypes } = require("sequelize");
 const db = require("../conn/buyOurFishDB");
 
 const buildPlants = db.define(
-  "build_plants",
+  "BUILD_PLANTS",
   {
     build_plant_id: {
       type: Sequelize.postgres.STRING,

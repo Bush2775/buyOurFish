@@ -115,6 +115,20 @@ app.post("/addAnimal", authUser, (req, res) => {
     });
 });
 
+app.post("/addPlant", (req, res) => {
+  const user_id = 2;
+  return plantManagement
+    .addPlantToBuild(req.body, user_id)
+    .then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).send(err);
+    });
+});
+
 app.get("/plants", (req, res) => {
   return plantManagement
     .getAllPlants()

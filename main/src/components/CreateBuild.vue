@@ -32,6 +32,7 @@
 
 <script>
 const axios = require("axios");
+const handleError = require("../helpers/handleErrorResponse");
 export default {
   name: "createBuild",
 
@@ -77,10 +78,10 @@ export default {
           }
         )
         .then(data => {
-          this.response = JSON.stringify(data);
+          window.location.href = "/#/userCollection";
         })
         .catch(err => {
-          console.log("ERROR: " + err);
+          handleError(err);
         });
     }
   }

@@ -127,6 +127,7 @@
 
 <script>
 const axios = require("axios");
+const handleError = require("../helpers/handleErrorResponse");
 export default {
   name: "UserCollection",
   data() {
@@ -163,7 +164,7 @@ export default {
         this.collection = data.build;
       })
       .catch(err => {
-        console.error("ERRROR" + err);
+        handleError(err);
       });
   }
 };

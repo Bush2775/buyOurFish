@@ -34,6 +34,7 @@
 
 <script>
 const axios = require("axios");
+const handleError = require("../helpers/handleErrorResponse");
 export default {
   name: "UserCollection",
   data() {
@@ -62,16 +63,15 @@ export default {
     axios
       .get("http://localhost:3000/collections", {
         headers: {
-          Authorization: localStorage.getItem("Auth")
+          Authorization: localStorage.getItem("Auth") + "sldkfj"
         }
       })
       .then(dataResponse => {
         this.buildArray = dataResponse.data;
         localStorage.setItem("data", JSON.stringify(dataResponse));
       })
-
       .catch(err => {
-        console.error("ERRROR" + err);
+        handleError(err);
       });
   }
 };
