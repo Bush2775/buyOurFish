@@ -113,8 +113,6 @@
 
       </div>
     </div> 
-
-    {{ collection }}
     
   </div>
 </template>
@@ -126,27 +124,29 @@ export default {
   data () {
     return {
         title: 'Build Details',
+        build: JSON.parse(localStorage.getItem("selectedBuild")),
+        authenticated: true,
         plantArray: [],
         animalArray: [],
         collection: {},
-        tank: {}
+        tank: {},
       }
     
   },
-   /*mounted() { // will redirected users to different page if they are not authenticated.
-        if(!this.authenticated) { // this can be if the user has session instead of authenticated.
+   mounted() { // will redirected users to different page if they are not authenticated.
+        /*if(!this.authenticated) { // this can be if the user has session instead of authenticated.
             this.$router.replace({ name: "Login" });
             alert('You need to log in before you can view your personal Builds')
-        }
-},*/
+        }*/
+},
 
   methods:{
     
   },
-  created() {
+  mounted() {
       //console.log("Created")
        axios
-        .get("http://localhost:3000/collection/1")//will be the call that steven sets up.
+        .get("http://localhost:3000/collection/" + this.build.build_collection_id)//will be the call that steven sets up.
         .then(dataResponse => {
           console.log(dataResponse.data, '***')
           const { data } = dataResponse;

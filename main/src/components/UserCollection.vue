@@ -3,6 +3,7 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
+      <div>selected build {{build}} </div>
       <table id="firstTable">
         <thead>
             <tr>
@@ -50,7 +51,9 @@ export default {
   methods:{
     goToDetails: build => {
         console.log(build)
+        localStorage.setItem("selectedBuild", JSON.stringify(build))
         window.location.href = "/#/BuildDetails";
+        
     }
   },
   created() {
@@ -59,7 +62,7 @@ export default {
         .get("http://localhost:3000/collections")
         .then(dataResponse => {
             this.buildArray = dataResponse.data;
-            localStorage.setItem("data", JSON.stringify(dataResponse))
+            
         })
         
         .catch(err => {

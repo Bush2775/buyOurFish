@@ -21,7 +21,8 @@
             <td>{{ plant.difficulty }}</td>
             <td>{{ plant.color }}</td>
             <td><img  class="imageSize" :src="plant.url" /></td>
-            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity"></input><button v-if="loggedIn">Add To Build</button></td>
+            <td v-if="loggedIn"><input type="text" v-model="request.quantity" placeholder="Quantity">
+            <button v-if="loggedIn">Add To Build</button></td>
             </tr>
         </tbody>
       </table>
@@ -39,6 +40,7 @@ export default {
         title: 'Plants Available to Add',
         plantArray: [],
         loggedIn: true,
+        build: JSON.parse(localStorage.getItem("selectedBuild")),
         request: {
           quantity: 0
         }
@@ -49,7 +51,13 @@ export default {
     addToBuild(event) {
       
     }
+    
   },
+  /*mounted() {
+      if(build= null) {
+        window.location.href = "/#/UserCollection"
+      }
+    },*/
   created() {
       //console.log("Created")
        axios
