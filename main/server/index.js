@@ -2,11 +2,14 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
+
 const userManagement = require("./controllers/userManagement");
 const collectionManagement = require("./controllers/collectionManagment");
 const tankManagement = require("./controllers/tankManagement");
 const animalManagement = require("./controllers/animalManagement");
 const plantManagement = require("./controllers/plantManagement");
+const sessionManagement = require("./controllers/sessionManagement");
+
 const cors = require("cors");
 app.use(cors());
 
@@ -16,6 +19,7 @@ app.post("/login", (req, res) => {
   return userManagement
     .login(req.body)
     .then(data => {
+      console.log(data);
       res.send(data);
     })
     .catch(err => {
@@ -48,13 +52,11 @@ app.get("/tanks", (req, res) => {
     });
 });
 
-app.get("/collections", (req, res) => {
-  console.log("hit collection");
-  const user_id = 2;
+app.get("/collections", authUser, (req, res) => {
+  const user_id = req.user_id;
   return collectionManagement
     .getBuilds(user_id)
     .then(data => {
-      console.log(data);
       res.send(data);
     })
     .catch(err => {
@@ -62,9 +64,9 @@ app.get("/collections", (req, res) => {
     });
 });
 
-app.get("/collection/:id", (req, res) => {
+app.get("/collection/:id", authUser, (req, res) => {
   const id = req.params.id;
-  const user_id = 2;
+  const user_id = req.user_id;
 
   return collectionManagement
     .getBuild(id, user_id)
@@ -76,9 +78,8 @@ app.get("/collection/:id", (req, res) => {
     });
 });
 
-app.post("/createCollection", (req, res) => {
-  console.log("hit create");
-  const user_id = 2;
+app.post("/createCollection", authUser, (req, res) => {
+  const user_id = req.user_id;
   return collectionManagement
     .createBuild(req.body, user_id)
     .then(data => {
@@ -100,8 +101,8 @@ app.get("/animals", (req, res) => {
     });
 });
 
-app.post("/addAnimal", (req, res) => {
-  const user_id = 2;
+app.post("/addAnimal", authUser, (req, res) => {
+  const user_id = req.user_id;
   return animalManagement
     .addAnimalToBuild(req.body, user_id)
     .then(data => {
@@ -128,3 +129,24 @@ app.get("/plants", (req, res) => {
 app.get("/", (req, res) => res.send("Hello World!"));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+async function authUser(req, res, next) {
+  const authToken = req.headers.authorization;
+  if (!authToken) {
+    return res.status(503).send("Failed to authenticate");
+  }
+  await sessionManagement
+    .getUserBySession(authToken)
+    .then(data => {
+      console.log("USER", data);
+      if (!data) {
+        return res.status(503).send("Failed to authenticate");
+      }
+      req.user_id = data.user_id;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(503).send("Failed to authenticate");
+    });
+}

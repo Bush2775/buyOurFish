@@ -46,16 +46,12 @@ export default {
         })
         .then(data => {
           this.response = JSON.stringify(data);
-          //set cookie
+          localStorage.setItem("Auth", data.data.authToken);
           //store user in localStorage
           localStorage.setItem("User", JSON.stringify(data.data.user));
+          localStorage.setItem("loggedIn", "true");
 
-          //TODO: get expiration from database
-          //redirect
-
-
-          //store user information
-
+          window.location.href = "/#/userCollection";
         })
         .catch(err => {
           console.error("ERRROR" + err);

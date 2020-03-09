@@ -6,33 +6,38 @@
       <div>selected build {{build}} </div>
       <table id="firstTable">
         <thead>
-            <tr>
+          <tr>
             <th>Name</th>
             <th>Description</th>
             <th>WaterType</th>
             <th>Number of Plants</th>
             <th>Number of Animals</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            <tr @click= goToDetails(build) v-for="build in buildArray" :key="build.build_collection_id" id="info">
+          <tr
+            @click="goToDetails(build)"
+            v-for="build in buildArray"
+            :key="build.build_collection_id"
+            id="info"
+          >
             <td>{{ build.name }}</td>
             <td>{{ build.description }}</td>
             <td>{{ build.water_type }}</td>
             <td>{{ build.plant_quantity }}</td>
             <td>{{ build.animal_quantity }}</td>
-            </tr>
+          </tr>
         </tbody>
       </table>
-    </div> 
+    </div>
   </div>
 </template>
 
 <script>
-const axios = require("axios")
+const axios = require("axios");
 export default {
-  name: 'UserCollection',
-  data () {
+  name: "UserCollection",
+  data() {
     return {
         title: 'Your Current Builds',
         build: JSON.parse(localStorage.getItem("selectedBuild")),
@@ -42,42 +47,44 @@ export default {
       }
     
   },
-   /*mounted() { // will redirected users to different page if they are not authenticated.
+  /*mounted() { // will redirected users to different page if they are not authenticated.
         if(!this.authenticated) { // this can be if the user has session instead of authenticated.
             this.$router.replace({ name: "Login" });
             alert('You need to log in before you can view your personal Builds')
         }
 },*/
 
-  methods:{
+  methods: {
     goToDetails: build => {
-        localStorage.setItem("selectedBuild", JSON.stringify(build))
+      console.log(build);
+      localStorage.setItem("selectedBuild", JSON.stringify(build))
         window.location.href = "/#/BuildDetails";
-        
     }
   },
   created() {
-      //console.log("Created")
-       axios
-        .get("http://localhost:3000/collections")
-        .then(dataResponse => {
-            this.buildArray = dataResponse.data;
-            
-        })
-        
-        .catch(err => {
-          console.error("ERRROR" + err);
-        });
-    }
-   
+    //console.log("Created")
+    axios
+      .get("http://localhost:3000/collections", {
+        headers: {
+          Authorization: localStorage.getItem("Auth")
+        }
+      })
+      .then(dataResponse => {
+        this.buildArray = dataResponse.data;
+        localStorage.setItem("data", JSON.stringify(dataResponse));
+      })
+
+      .catch(err => {
+        console.error("ERRROR" + err);
+      });
   }
-
-
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
@@ -92,24 +99,24 @@ a {
   color: #42b983;
 }
 span {
-    text-align: left;
+  text-align: left;
 }
 #animalTable {
-    text-align: center;
+  text-align: center;
 }
 table {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   width: 750px;
   border-collapse: collapse;
-  border: 3px solid #44475C;
+  border: 3px solid #44475c;
   margin: 10px 10px 0 10px;
 }
 
 table th {
   text-transform: uppercase;
   text-align: left;
-  background: #44475C;
-  color: #FFF;
+  background: #44475c;
+  color: #fff;
   padding: 8px;
   min-width: 30px;
 }
@@ -117,13 +124,12 @@ table th {
 table td {
   text-align: left;
   padding: 8px;
-  border-right: 2px solid #7D82A8;
+  border-right: 2px solid #7d82a8;
 }
 table td:last-child {
   border-right: none;
 }
 table tbody tr:nth-child(2n) td {
-  background: #D4D8F9;
+  background: #d4d8f9;
 }
-
 </style>
