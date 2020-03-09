@@ -20,12 +20,12 @@
             <td>{{ animal.name }}</td>
             <td>{{ animal.water_type }}</td>
             <td>{{ animal.aggression }}</td>
-            <td>{{ animal.size}}</td>
+            <td>{{ animal.size }}</td>
             <td>{{ animal.color }}</td>
             <td><img  class="imageSize" :src="animal.url" /></td>
             <td v-if="loggedIn">
               <input type="text" v-model="request.quantity" placeholder="Quantity"/>
-              <button v-if="loggedIn">Add To Build</button></td>
+              <button v-if="loggedIn" @click="addToBuild(animal)">Add To Build</button></td>
             </tr>
         </tbody>
       </table>
@@ -45,14 +45,18 @@ export default {
         loggedIn: true,
         build: JSON.parse(localStorage.getItem("selectedBuild")),
         request: {
-          quantity: 0
+          quantity: 0,
+          buildNumber: 2,
+          animalToAdd: 0
         }
       }
     
   },
   methods: {
-    addToBuild(event) {
-      
+    addToBuild(event, animal) {
+      //get animal id
+      axios
+      .post("http://localhost:3000/addAnimal", request)
     }
   },
   created() {
