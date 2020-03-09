@@ -3,8 +3,11 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
-      <div>selected build {{build}}</div>
+        <div> 
+            <button><router-link class="right" to="/CreateBuild">Create a New Build</router-link></button>
+        </div>
       <table id="firstTable">
+          
         <thead>
           <tr>
             <th>Name</th>

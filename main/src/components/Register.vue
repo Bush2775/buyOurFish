@@ -26,11 +26,10 @@
       <div>
         Email:
         <input type="text" v-model="request.email" />
-      </div>,
+      </div>
+       <br>
       <button type="button" @click="handleClick">Register</button>
       <button type="button">Back to login</button>
-      {{ request }}
-      {{ response }}
     </div>
   </div>
 </template>

@@ -3,21 +3,24 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{ title }}</h1>
-
+      
       <div>
         Name of Build:
         <input type="text" v-model="request.buildName" />
       </div>
+       <br>
       <div>
         Description:
         <input type="text" v-model="request.description" />
       </div>
+       <br>
       <div>
         <select @change="handleWaterTypeSelect">
           <option value="Fresh">Fresh water</option>
           <option value="Salt">Salt water</option>
         </select>
       </div>
+       <br>
       <div>
         <select @change="handleTankSelect">
           <option value="1">Tank 1</option>
@@ -25,6 +28,7 @@
           <option value="3">Tank 3</option>
         </select>
       </div>
+       <br>
       <button type="button" @click="handleClick">Create</button>
     </div>
   </div>
