@@ -1,6 +1,4 @@
 module.exports = function(auth, user) {
-  console.log(user, 12222);
-  console.log(user.User, 12222);
   const dataValues = user.dataValues;
   return {
     authToken: auth,

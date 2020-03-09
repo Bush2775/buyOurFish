@@ -3,21 +3,40 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{ title }}</h1>
-      <div>First Name: <input type="text" v-model="request.firstName" /></div>
-      <div>Last Name: <input type="text" v-model="request.lastName" /></div>
-      <div>Username: <input type="text" v-model="request.userName" /></div>
-      <div>Password: <input type="text" v-model="request.password" /></div>
-      <div>Password Check: <input type="text" v-model="passwordCheck" /></div>
-      <div>Email: <input type="text" v-model="request.email" /></div>
-      ,
-      <button type="button">Register</button>
+      <div>
+        First Name:
+        <input type="text" v-model="request.first_name" />
+      </div>
+      <div>
+        Last Name:
+        <input type="text" v-model="request.last_name" />
+      </div>
+      <div>
+        Username:
+        <input type="text" v-model="request.username" />
+      </div>
+      <div>
+        Password:
+        <input type="text" v-model="request.password" />
+      </div>
+      <div>
+        Password Check:
+        <input type="text" v-model="passwordCheck" />
+      </div>
+      <div>
+        Email:
+        <input type="text" v-model="request.email" />
+      </div>,
+      <button type="button" @click="handleClick">Register</button>
       <button type="button">Back to login</button>
       {{ request }}
+      {{ response }}
     </div>
   </div>
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: "Registration",
 
@@ -26,15 +45,33 @@ export default {
       title: "Registration",
       passwordCheck: "",
       request: {
-        firstName: "",
-        lastName: "",
-        userName: "",
+        first_name: "",
+        last_name: "",
+        username: "",
         password: "",
-        passwordCheck: "",
         email: ""
       },
       response: ""
     };
+  },
+  methods: {
+    handleClick(event) {
+      console.log("hitting request", this.request);
+      axios
+        .post("http://localhost:3000/register", this.request)
+        .then(data => {
+          this.response = JSON.stringify(data);
+          localStorage.setItem("Auth", data.data.authToken);
+          //store user in localStorage
+          localStorage.setItem("User", JSON.stringify(data.data.user));
+          localStorage.setItem("loggedIn", "true");
+
+          // window.location.href = "/#/userCollection";
+        })
+        .catch(err => {
+          console.error("ERRROR" + err);
+        });
+    }
   }
 };
 </script>

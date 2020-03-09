@@ -34,6 +34,7 @@ async function login(loginParams) {
 }
 
 async function register(registerParams) {
+  console.log(registerParams, "***");
   const { username, password, email, first_name, last_name } = registerParams;
   console.log(username, password, email, first_name, last_name);
   const user = await db.query(
@@ -62,6 +63,8 @@ async function register(registerParams) {
     first_name,
     last_name
   });
+
+  console.log(newUser.user_id, 000000);
 
   const { session_id } = await sessionController
     .createNewSession(newUser.user_id)

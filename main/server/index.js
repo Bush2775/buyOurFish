@@ -146,6 +146,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 async function authUser(req, res, next) {
   const authToken = req.headers.authorization;
+  console.log(authToken);
   if (!authToken) {
     return res.status(503).send("Failed to authenticate");
   }
