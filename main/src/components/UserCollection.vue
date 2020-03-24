@@ -27,7 +27,7 @@
             <td>{{ build.name }}</td>
             <td>{{ build.description }}</td>
             <td>{{ build.water_type }}</td>
-            <td>{{ build.plant_quantity }}</td>
+            <td>{{ build.plant_quantity }} </td>
             <td>{{ build.animal_quantity }}</td>
           </tr>
         </tbody>

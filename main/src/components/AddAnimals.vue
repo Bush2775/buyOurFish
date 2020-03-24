@@ -12,6 +12,7 @@
             <th>Size</th>
             <th>Color</th>
             <th>Picture</th>
+            <th v-if="loggedIn">Add</th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +25,10 @@
             <td>
               <img class="imageSize" :src="animal.url" />
             </td>
-            
+            <td v-if="loggedIn">
+              <input type="text" v-model="animal.quantity" placeholder="Quantity" />
+              <button :disabled="disabled" v-if="loggedIn" @click="addToBuild(animal)">Add To Build</button>
+            </td>
           </tr>
         </tbody>
       </table>

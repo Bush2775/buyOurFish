@@ -34,6 +34,7 @@
                 <th>Material</th>
                 <th>Model</th>
                 <th>Picture</th>
+                
               </tr>
             </thead>
 
@@ -66,6 +67,7 @@
                 <th>Color</th>
                 <th>Argression</th>
                 <th>Picture</th>
+                <th><button><router-link to="/AddAnimals">Add Fish</router-link></button></th>
               </tr>
             </thead>
 
@@ -101,6 +103,7 @@
                 <th>Difficulty</th>
                 <th>Color</th>
                 <th>Picture</th>
+                <th><button><router-link to="/AddPlants">Add Plants</router-link></button></th>
               </tr>
             </thead>
 
@@ -121,7 +124,8 @@
         <br />
       </div>
     </div>
-    {{ collection }}
+    <br>
+    {{build}}
   </div>
 </template>
 

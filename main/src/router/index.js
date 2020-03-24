@@ -9,6 +9,8 @@ import Tanks from "@/components/Tanks";
 import Navbar from "@/components/Navbar";
 import BuildDetails from "@/components/BuildDetails";
 import createBuild from "@/components/CreateBuild";
+import AddAnimals from "@/components/AddAnimals";
+import AddPlants from "@/components/AddPlants";
 
 Vue.use(Router);
 
@@ -58,6 +60,16 @@ export default new Router({
       path: "/CreateBuild",
       name: "Create Build",
       component: createBuild
+    },
+    {
+      path: "/AddAnimals",
+      name: "AddAnimals",
+      component: AddAnimals
+    },
+    {
+      path: "/AddPlants",
+      name: "AddPlants",
+      component: AddPlants
     }
   ]
 });
