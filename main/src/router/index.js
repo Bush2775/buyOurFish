@@ -22,6 +22,16 @@ export default new Router({
       component: Register
     },
     {
+      path: "/Logout",
+      name: "Logout",
+      beforeEnter: (to, from, next) => {
+        localStorage.setItem("User", "");
+        localStorage.setItem("loggedIn", "");
+        localStorage.setItem("Auth", "");
+        next({ name: "Login" });
+      }
+    },
+    {
       path: "/Login",
       name: "Login",
       component: Login

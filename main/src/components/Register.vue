@@ -17,17 +17,17 @@
       </div>
       <div>
         Password:
-        <input type="text" v-model="request.password" />
+        <input type="password" v-model="request.password" />
       </div>
       <div>
         Password Check:
-        <input type="text" v-model="passwordCheck" />
+        <input type="password" v-model="passwordCheck" />
       </div>
       <div>
         Email:
         <input type="text" v-model="request.email" />
       </div>
-       <br>
+      <br />
       <button type="button" @click="handleClick">Register</button>
       <button type="button">Back to login</button>
     </div>
@@ -68,6 +68,7 @@ export default {
           // window.location.href = "/#/userCollection";
         })
         .catch(err => {
+          alert(err.toString());
           console.error("ERRROR" + err);
         });
     }

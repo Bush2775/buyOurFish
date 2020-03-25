@@ -7,18 +7,17 @@
         Username:
         <input type="text" v-model="request.username" />
       </div>
-       <br>
+      <br />
       <div>
         Password:
-        <input type="text" v-model="request.password" />
+        <input type="password" v-model="request.password" />
       </div>
-       <br>
+      <br />
       <div>
         <button @click="handleClick">Submit</button>
       </div>
-      
+
       <!-- {{ JSON.stringify(this.data.$sharedData) }} -->
-      
     </div>
   </div>
 </template>

@@ -1,8 +1,6 @@
 module.exports = error => {
   if (error.response.status === 503) {
-    localStorage.setItem("User", "");
-    localStorage.setItem("loggedIn", "");
-    localStorage.setItem("Auth", "");
+    alert("Unauthorized to perform action");
 
     window.location.href = "/#/login";
   }

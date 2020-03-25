@@ -24,14 +24,11 @@
             <td>
               <img class="imageSize" :src="animal.url" />
             </td>
-            
           </tr>
         </tbody>
       </table>
     </div>
-    {{build}}
   </div>
-
 </template>
 
 
@@ -78,7 +75,7 @@ export default {
       .then(dataResponse => {
         this.animalsArray = dataResponse.data;
       })
-      
+
       .catch(err => {
         console.error("ERRROR" + err);
       });

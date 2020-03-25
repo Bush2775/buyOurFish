@@ -7,6 +7,7 @@ async function getAllPlants() {
 }
 
 async function addPlantToBuild(params, user_id) {
+  console.log("ADDING PLANTS");
   const { build_plant_id, build_collection_id, quantity } = params;
 
   console.log(build_plant_id, build_collection_id, quantity);
@@ -37,7 +38,7 @@ async function addPlantToBuild(params, user_id) {
   } else {
     return collectionPlants.update(
       {
-        quantity: quantity + collectionPlants.quantity
+        quantity: +quantity + collectionPlants.quantity
       },
       {
         where: {

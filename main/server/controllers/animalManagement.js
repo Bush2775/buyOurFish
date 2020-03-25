@@ -38,7 +38,7 @@ async function addAnimalToBuild(request, user_id) {
     //Need to update
     return collectionAnimals.update(
       {
-        quantity: quantity + collectionAnimals.quantity
+        quantity: +quantity + collectionAnimals.quantity
       },
       {
         where: {

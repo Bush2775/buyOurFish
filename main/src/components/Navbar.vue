@@ -9,7 +9,7 @@
       <ul>
         <li>
           <nav>
-            <router-link class="right" to="/Login">Logout</router-link>
+            <router-link @click="logout" class="right" to="/Logout">Logout</router-link>
           </nav>
         </li>
         <li>
@@ -87,6 +87,13 @@ export default {
         password: ""
       }
     };
+  },
+  methods: {
+    logout() {
+      localStorage.setItem("User", "");
+      localStorage.setItem("loggedIn", "");
+      localStorage.setItem("Auth", "");
+    }
   }
 };
 </script>
