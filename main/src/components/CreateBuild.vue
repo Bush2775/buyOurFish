@@ -23,14 +23,14 @@
        <br>
       <div>
         <select @change="handleTankSelect">
-          <option value="1">Tank 1</option>
-          <option value="2">Tank 2</option>
-          <option value="3">Tank 3</option>
+          <option v-for="tanks in tanksArray" :key="tanks.build_tank_id" id="info" :value="tanks.build_tank_id">
+            {{tanks.volume}} gallon, {{tanks.material}}, {{tanks.brand}}</option>
         </select>
       </div>
        <br>
       <button type="button" @click="handleClick">Create</button>
     </div>
+    {{tanksArray}}
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       title: "Create Build",
+      tanksArray: [],
       response: "",
       request: {
         water_type: "",
@@ -52,6 +53,18 @@ export default {
       }
     };
   },
+  created() {
+      //console.log("Created")
+       axios
+        .get("http://localhost:3000/tanks")
+        .then(dataResponse => {
+            this.tanksArray = dataResponse.data;
+            
+        })
+        .catch(err => {
+          console.error("ERRROR" + err);
+        });
+    },
   methods: {
     handleWaterTypeSelect(event) {
       const waterValue = event.target.value;
@@ -67,6 +80,7 @@ export default {
       console.log(this.data);
       console.log("hitting request", this.request);
       axios
+        
         .post(
           "http://localhost:3000/createCollection",
           {

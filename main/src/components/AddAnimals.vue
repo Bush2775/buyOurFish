@@ -35,7 +35,6 @@
     </div>
     {{build}}
   </div>
-
 </template>
 
 
@@ -59,11 +58,19 @@ export default {
       console.log(animal.build_animal_id);
       console.log(animal.quantity);
       axios
-        .post("http://localhost:3000/addAnimal", {
-          build_animal_id: animal.build_animal_id,
-          build_collection_id: this.build.build_collection_id,
-          quantity: animal.quantity
-        })
+        .post(
+          "http://localhost:3000/addAnimal",
+          {
+            build_animal_id: animal.build_animal_id,
+            build_collection_id: this.build.build_collection_id,
+            quantity: animal.quantity
+          },
+          {
+            headers: {
+              Authorization: localStorage.getItem("Auth")
+            }
+          }
+        )
         .catch(err => {
           alert("FAILED TO ADD" + err.response.data);
         });
@@ -80,9 +87,13 @@ export default {
     axios
       .get("http://localhost:3000/animals")
       .then(dataResponse => {
-        this.animalsArray = dataResponse.data;
+        this.animalsArray = dataResponse.data.filter(
+          animal =>
+            animal.water_type === this.build.water_type ||
+            animal.water_type === "Fresh"
+        );
       })
-      
+
       .catch(err => {
         console.error("ERRROR" + err);
       });

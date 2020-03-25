@@ -27,7 +27,7 @@
         Email:
         <input type="text" v-model="request.email" placeholder="Email" required/>
       </div>
-       <br>
+      <br />
       <button type="button" @click="handleClick">Register</button>
       <button type="button">Back to login</button>
     </div>
@@ -69,6 +69,7 @@ export default {
           // window.location.href = "/#/userCollection";
         })
         .catch(err => {
+          alert(err.toString());
           console.error("ERRROR" + err);
         });
     }

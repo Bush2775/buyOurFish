@@ -34,7 +34,6 @@
                 <th>Material</th>
                 <th>Model</th>
                 <th>Picture</th>
-                
               </tr>
             </thead>
 
@@ -67,7 +66,11 @@
                 <th>Color</th>
                 <th>Argression</th>
                 <th>Picture</th>
-                <th><button><router-link to="/AddAnimals">Add Fish</router-link></button></th>
+                <th>
+                  <button>
+                    <router-link to="/AddAnimals">Add Fish</router-link>
+                  </button>
+                </th>
               </tr>
             </thead>
 
@@ -103,7 +106,11 @@
                 <th>Difficulty</th>
                 <th>Color</th>
                 <th>Picture</th>
-                <th><button><router-link to="/AddPlants">Add Plants</router-link></button></th>
+                <th>
+                  <button>
+                    <router-link to="/AddPlants">Add Plants</router-link>
+                  </button>
+                </th>
               </tr>
             </thead>
 
@@ -124,8 +131,7 @@
         <br />
       </div>
     </div>
-    <br>
-    {{build}}
+    <br />
   </div>
 </template>
 
@@ -136,18 +142,18 @@ export default {
   name: "UserCollection",
   data() {
     return {
-        title: 'Build Details',
-        build: JSON.parse(localStorage.getItem("selectedBuild")),
-        authenticated: true,
-        plantArray: [],
-        animalArray: [],
-        collection: {},
-        tank: {},
-      }
-    
+      title: "Build Details",
+      build: JSON.parse(localStorage.getItem("selectedBuild")),
+      authenticated: true,
+      plantArray: [],
+      animalArray: [],
+      collection: {},
+      tank: {}
+    };
   },
-   mounted() { // will redirected users to different page if they are not authenticated.
-        /*if(!this.authenticated) { // this can be if the user has session instead of authenticated.
+  mounted() {
+    // will redirected users to different page if they are not authenticated.
+    /*if(!this.authenticated) { // this can be if the user has session instead of authenticated.
       title: "Build Details",
       plantArray: [],
       animalArray: [],
@@ -160,17 +166,20 @@ export default {
             this.$router.replace({ name: "Login" });
             alert('You need to log in before you can view your personal Builds')
         }*/
-},
+  },
 
   methods: {},
   created() {
     //console.log("Created")
     axios
-      .get("http://localhost:3000/collection/" + this.build.build_collection_id, {
-        headers: {
-          Authorization: localStorage.getItem("Auth")
+      .get(
+        "http://localhost:3000/collection/" + this.build.build_collection_id,
+        {
+          headers: {
+            Authorization: localStorage.getItem("Auth")
+          }
         }
-      }) //will be the call that steven sets up.
+      ) //will be the call that steven sets up.
       .then(dataResponse => {
         console.log(dataResponse.data, "***");
         const { data } = dataResponse;
