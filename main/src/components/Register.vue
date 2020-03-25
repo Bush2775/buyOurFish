@@ -5,27 +5,27 @@
       <h1 class="title">{{ title }}</h1>
       <div>
         First Name:
-        <input type="text" v-model="request.first_name" />
+        <input type="text" v-model="request.first_name" placeholder="First Name" required/>
       </div>
       <div>
         Last Name:
-        <input type="text" v-model="request.last_name" />
+        <input type="text" v-model="request.last_name" placeholder="Last Name" required/>
       </div>
       <div>
         Username:
-        <input type="text" v-model="request.username" />
+        <input type="text" v-model="request.username" placeholder="Username" required/>
       </div>
       <div>
         Password:
-        <input type="password" v-model="request.password" />
+        <input type="text" v-model="request.password" placeholder="Password" required/>
       </div>
       <div>
         Password Check:
-        <input type="password" v-model="passwordCheck" />
+        <input type="text" v-model="passwordCheck" placeholder="Retype password" required/>
       </div>
       <div>
         Email:
-        <input type="text" v-model="request.email" />
+        <input type="text" v-model="request.email" placeholder="Email" required/>
       </div>
       <br />
       <button type="button" @click="handleClick">Register</button>
@@ -56,6 +56,7 @@ export default {
   methods: {
     handleClick(event) {
       console.log("hitting request", this.request);
+      
       axios
         .post("http://localhost:3000/register", this.request)
         .then(data => {
