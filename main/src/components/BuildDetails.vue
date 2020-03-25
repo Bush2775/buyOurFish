@@ -3,6 +3,9 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
+      <div> 
+            <button><router-link class="right" to="/UserCollection">Back to My Builds</router-link></button>
+        </div>
       <div id="contentDetails">
         <div>
           <h3>Name:</h3>
@@ -249,6 +252,7 @@ table tbody tr:nth-child(2n) td {
 #contentDetails {
   text-align: left;
   border: 3px solid #44475c;
+  margin: 10px 10px 0 10px;
 }
 
 .imageSize {

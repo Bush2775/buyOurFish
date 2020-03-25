@@ -15,14 +15,14 @@
       </div>
        <br>
       <div>
-        <select @change="handleWaterTypeSelect">
+        <select @click="handleWaterTypeSelect">
           <option value="Fresh">Fresh water</option>
           <option value="Salt">Salt water</option>
         </select>
       </div>
        <br>
       <div>
-        <select @change="handleTankSelect">
+        <select @click="handleTankSelect">
           <option v-for="tanks in tanksArray" :key="tanks.build_tank_id" id="info" :value="tanks.build_tank_id">
             {{tanks.volume}} gallon, {{tanks.material}}, {{tanks.brand}}</option>
         </select>
@@ -30,7 +30,6 @@
        <br>
       <button type="button" @click="handleClick">Create</button>
     </div>
-    {{tanksArray}}
   </div>
 </template>
 

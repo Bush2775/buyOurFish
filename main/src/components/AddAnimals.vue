@@ -3,6 +3,9 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
+      <div> 
+            <button><router-link class="right" to="/BuildDetails">Back to Build Details</router-link></button>
+        </div>
       <table id="firstTable">
         <thead>
           <tr>
@@ -33,7 +36,6 @@
         </tbody>
       </table>
     </div>
-    {{build}}
   </div>
 </template>
 
@@ -84,14 +86,15 @@ export default {
   },
   created() {
     //console.log("Created")
+  
     axios
       .get("http://localhost:3000/animals")
       .then(dataResponse => {
         this.animalsArray = dataResponse.data.filter(
           animal =>
-            animal.water_type === this.build.water_type ||
-            animal.water_type === "Fresh"
+            animal.water_type === this.build.water_type
         );
+
       })
 
       .catch(err => {

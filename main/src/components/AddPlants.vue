@@ -3,6 +3,9 @@
     <navbarcomp></navbarcomp>
     <div class="modal">
       <h1 class="title">{{title}}</h1>
+      <div> 
+            <button><router-link class="right" to="/BuildDetails">Back to Build Details</router-link></button>
+        </div>
       <table id="firstTable">
         <thead>
           <tr>
@@ -79,8 +82,7 @@ export default {
       .then(dataResponse => {
         this.plantArray = dataResponse.data.filter(
           plant =>
-            plant.water_type === this.build.water_type ||
-            plant.water_type === "Fresh"
+            plant.water_type === this.build.water_type
         );
       })
       .catch(err => {
